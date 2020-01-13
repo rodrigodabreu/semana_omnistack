@@ -1,0 +1,13 @@
+{
+  "name": "semana-omnistack",
+  "version": "1.0.0",
+  "description": "Colocando a mão na massa - Semana Omnistack",
+  "main": "index.js",
+  "repository": "git@github.com:rodrigodabreu/semana_omnistack.git",
+  "author": "Abreu <rodrigodabreu@edu.unisinos.br>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/preset-env": "^7.8.3"
+  }
+}
