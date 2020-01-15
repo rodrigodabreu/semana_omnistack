@@ -1,8 +1,0 @@
-{
-  "name": "semana_omnistack",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:rodrigodabreu/semana_omnistack.git",
-  "author": "rodrigodabreu@edu.unisinos.br",
-  "license": "MIT"
-}
