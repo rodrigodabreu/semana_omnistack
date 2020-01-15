@@ -1,11 +1,22 @@
 // Importando o módulo Express
 const express = require ('express');
+const mongoose = require ('mongoose');
+const routes = require ('./routes');
 
 // Colocando o servidor no ar
 const app = express();
 
+// Conectando o mongoose ao banco do MONGODB
+mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0-nwgmj.mongodb.net/week10?retryWrites=true&w=majority', {
+    // PARA RETIRAR O DEPRECATION WARNING
+    useUnifiedTopology: true, 
+    useNewUrlParser: true,
+})
+;
+
 // Cadastrando no express a interpretação de JSON
-app.use(express.json());
+app.use(express.json()); //precisa vir antes das rotas
+app.use(routes);
 
 // Setando a porta que a aplicação vai rodar
 app.listen(3333);
@@ -16,33 +27,10 @@ app.listen(3333);
 // PUT -> Editar alguma informação
 // DELETE -> Deletar alguma informação
 
-//GET
-app.get('/users', (request, response) => {
-   console.log(request.query) ;
-   return response.json({ message : 'Hello Rodrigo' });
-});
-
-// POST
-app.post('/users', (request, response) => {
-    console.log(request.body) ;
-    return response.json({ message : 'Hello Rodrigo' });
- });
-// PUT
-app.put('/users', (request, response) => {
-    console.log(request.query) ;
-    return response.json({ message : 'Hello Rodrigo' });
- });
-// DELETE
-app.delete('/users', (request, response) => {
-    console.log(request.query) ;
-    return response.json({ message : 'Hello Rodrigo' });
- });
-
 // Tipos de parâmetros
 // Query Params -> na maioria das vezes utilizando nos métodos GET , req.query (Filtros, ordenação e paginação)
 // Route Params -> request.params (Identificar um recurso na alteração ou remoção)
 // Body -> request.body
 
-// Conectando a aplicação com o banco de dados MONGODB
 
 
