@@ -1,7 +1,7 @@
 // Importando o módulo Express
-const express = require ('express');
-const mongoose = require ('mongoose');
-const routes = require ('./routes');
+const express = require('express');
+const mongoose = require('mongoose');
+const routes = require('./routes');
 
 // Colocando o servidor no ar
 const app = express();
@@ -9,10 +9,9 @@ const app = express();
 // Conectando o mongoose ao banco do MONGODB
 mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0-nwgmj.mongodb.net/week10?retryWrites=true&w=majority', {
     // PARA RETIRAR O DEPRECATION WARNING
-    useUnifiedTopology: true, 
+    useUnifiedTopology: true,
     useNewUrlParser: true,
-})
-;
+});
 
 // Cadastrando no express a interpretação de JSON
 app.use(express.json()); //precisa vir antes das rotas
@@ -31,6 +30,3 @@ app.listen(3333);
 // Query Params -> na maioria das vezes utilizando nos métodos GET , req.query (Filtros, ordenação e paginação)
 // Route Params -> request.params (Identificar um recurso na alteração ou remoção)
 // Body -> request.body
-
-
-
