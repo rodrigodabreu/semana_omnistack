@@ -1,54 +1,68 @@
-const {Router} = require ('express'); //modulo de roteamento
-const axios = require ('axios');
-const Dev = require ('./model/Dev');
+const {
+    Router
+} = require('express'); //modulo de roteamento
+const axios = require('axios');
+const Dev = require('./model/Dev');
 
 const routes = Router();
 
 //GET
 routes.get('/devs', (request, response) => {
-    console.log(request.query) ;
-    return response.json({ message : 'Hello Omnistack' });
- });
- 
- // POST
- routes.post('/devs', async (request, response) => {
+    console.log(request.query);
+    return response.json({
+        message: 'Hello Omnistack'
+    });
+});
 
-     const { github_username, techs } = request.body;
+// POST
+routes.post('/devs', async (request, response) => {
 
-     const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
+    const {
+        github_username,
+        techs
+    } = request.body;
 
-     const { name = login, avatar_url, bio } = apiResponse.data;
+    const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
 
-     console.log(name, avatar_url, bio);
+    const {
+        name = login, avatar_url, bio
+    } = apiResponse.data;
 
-     const techsArray = techs.split(',').map(tech => tech.trim()); //remover espaçamentos e vírgulas para adicionar no array de techs
+    const techsArray = techs.split(',').map(tech => tech.trim()); //remover espaçamentos e vírgulas para adicionar no array de techs
 
-     const dev = await Dev.create({
-         github_username, //short syntaxe JS
-         name,
-         avatar_url,
-         bio,
-         techs: techsArray,
-     });
+    console.log(Dev);
 
-     return response.json(dev);
-  });
+    try {
+        const dev = Dev.create({
+            github_username, //short syntaxe JS
+            name,
+            avatar_url,
+            bio,
+            techs: techsArray,
+        });
+        return response.json(dev);
+    } catch (error) {
+        response.json({
+            message: "error"
+        });
+    }
+});
 
 
- // PUT
- routes.put('/devs', (request, response) => {
-     console.log(request.query) ;
-     return response.json({ message : 'Hello Omnistack' });
-  });
- // DELETE
- routes.delete('/devs', (request, response) => {
-     console.log(request.query) ;
-     return response.json({ message : 'Hello Omnistack' });
-  });
+// PUT
+routes.put('/devs', (request, response) => {
+    console.log(request.query);
+    return response.json({
+        message: 'Hello Omnistack'
+    });
+});
+// DELETE
+routes.delete('/devs', (request, response) => {
+    console.log(request.query);
+    return response.json({
+        message: 'Hello Omnistack'
+    });
+});
 
 // Exportar as rotas
 module.exports = routes;
-
-
-
-

@@ -9,4 +9,6 @@ const DevSchema = new mongoose.Schema({
 
 });
 
-module.export = mongoose.model('Dev', DevSchema);
+const model = mongoose.model('Dev', DevSchema)
+
+module.export = model;
