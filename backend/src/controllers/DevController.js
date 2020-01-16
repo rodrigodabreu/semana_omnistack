@@ -55,14 +55,14 @@ module.exports = {
 
         return response.json(dev);
     },
-     
-    // atualizar os dados do dev
+    
+    // TODO: atualizar os dados do dev
     async update (request, response) {
         
         return response.json({});
     },
 
-    // deletar o registro do dev
+    //  TODO: deletar o registro do dev
     async destroy (request, response) {
         
         return response.json({});
