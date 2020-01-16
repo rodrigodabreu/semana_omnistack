@@ -1,52 +1,16 @@
-const {
-    Router
-} = require('express'); //modulo de roteamento
-const axios = require('axios');
-const Dev = require('./model/Dev');
+const {Router} = require('express'); //modulo de roteamento
+const DevController = require('./controllers/DevController');
+const SearchController = require('./controllers/SearchController');
 
 const routes = Router();
 
-//GET
-routes.get('/devs', (request, response) => {
-    console.log(request.query);
-    return response.json({
-        message: 'Hello Omnistack'
-    });
-});
+// GET
+routes.get('/devs', DevController.index); // rota para buscar a lista de devs
+routes.get('/search', SearchController.index); //rota para buscar o dev com base na latitude/longitude
+
 
 // POST
-routes.post('/devs', async (request, response) => {
-
-    const {
-        github_username,
-        techs
-    } = request.body;
-
-    const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
-
-    const {
-        name = login, avatar_url, bio
-    } = apiResponse.data;
-
-    const techsArray = techs.split(',').map(tech => tech.trim()); //remover espaçamentos e vírgulas para adicionar no array de techs
-
-    console.log(Dev);
-
-    try {
-        const dev = Dev.create({
-            github_username, //short syntaxe JS
-            name,
-            avatar_url,
-            bio,
-            techs: techsArray,
-        });
-        return response.json(dev);
-    } catch (error) {
-        response.json({
-            message: "error"
-        });
-    }
-});
+routes.post('/devs', DevController.store);
 
 
 // PUT
