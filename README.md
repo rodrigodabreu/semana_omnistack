@@ -2,7 +2,7 @@
 
 #### Periodo: 13/01/20 a 17/01/20
 #### Instrutor: Diego Fernandes - CTO Rocketseat
-####Desenvolvedor: Rodrigo Abreu - rodrigodabreu@edu.unisinos.br
+#### Desenvolvedor: Rodrigo Abreu - rodrigodabreu@edu.unisinos.br
 
 ### Criando uma aplicação do ZERO na Stack Javascript (React, React Native e NodeJS)
 
@@ -18,3 +18,6 @@
   - Excluir um dev;
   
 Project hosted by Rockeseat - www.rocketseat.com.br
+
+
+### Orientações para subir local
