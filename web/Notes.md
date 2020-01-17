@@ -13,4 +13,6 @@
 
 #### Dicas:
 
-    <> fragment -> utilizado para adicionar mais de um mesmo componente
+    <> fragment -> utilizado para adicionar mais de um mesmo componente;
+
+    * Iniciar o desenvolvimento da aplicação pelo layout e CSS e após implementar a parte do JS;
