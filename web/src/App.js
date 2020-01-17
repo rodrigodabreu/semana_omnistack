@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './Header';
 
-function App() {
+// 3 conceitos principais
+// Componente -> Um bloco isolado de HTML, CSS e JS, o qual não interfere no restante da aplicação - Função que retorna que algum conteudo HTML
+// Propriedade ou atributo -> acessar as propriedades utilizando o props
+// Estado -> 
+// <> fragment -> utilizado para adicionar mais de um mesmo componente
+
+function App() { 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <> 
+    <Header title="Meu painel1"/>
+    <Header title="Meu painel2"/>
+    <Header title="Meu painel3"/>
+    </>
   );
-}
+};
 
 export default App;
