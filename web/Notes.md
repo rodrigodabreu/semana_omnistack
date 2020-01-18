@@ -16,3 +16,13 @@
     <> fragment -> utilizado para adicionar mais de um mesmo componente;
 
     * Iniciar o desenvolvimento da aplicação pelo layout e CSS e após implementar a parte do JS;
+
+
+    Alterado a responsividade através do @media
+
+    /*altera a resposividade para 1 item por linha quando form inferior a 650px de width*/
+    @media (max-width: 650px){
+    main ul {
+        grid-template-columns: 1fr; 
+    }
+}
