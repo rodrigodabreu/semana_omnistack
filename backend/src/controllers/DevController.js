@@ -45,7 +45,7 @@ module.exports = {
 
         return response.json(dev);
     },
-    
+        
     // TODO: atualizar os dados do dev
     async update (request, response) {
         
