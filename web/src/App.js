@@ -6,6 +6,8 @@ import './App.css';
 import './Sidebar.css';
 import './Main.css';
 
+import DevItem from './components/DevItem'; //nao precisa importar o index, pois por default ele sempre busca o index
+
 function App() { 
   
   //Criando estados para latitude e longitude
@@ -15,6 +17,8 @@ function App() {
   //Criando estados para github_username e techs
   const [ github_username, setGithubUserName ] = useState('');
   const [ techs, setTechs ] = useState('');
+  
+  const [devs, setDevs] = useState([]);
 
 useEffect(() => {
   navigator.geolocation.getCurrentPosition(
@@ -32,6 +36,15 @@ useEffect(() => {
   )
 },[]);
 
+useEffect(() => {
+  async function loadDevs() {
+    const response = await api.get('/devs');
+    setDevs(response.data);
+    
+  } 
+  loadDevs();
+},[]);
+
 async function handleAddDev(e) {
   e.preventDefault(); //eliminando o comportamento padrão de enviar o usuário para uma outra tela
   const response = await api.post('/devs', {
@@ -41,8 +54,11 @@ async function handleAddDev(e) {
     longitude
   });
 
-  console.log(response.data);
+  //limpando os campos do formulário
+  setGithubUserName(''); 
+  setTechs('');
 
+  setDevs([...devs, response.data]); //buscando o array de devs existente e adicionando o novo dev adicionado
 };
 
   return (
@@ -101,54 +117,9 @@ async function handleAddDev(e) {
       </aside>
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars0.githubusercontent.com/u/2254731?s=460&v=4" alt="Diego Fernandes"/>
-              <div className="user-info"></div>
-              <div className="user-info">
-                <strong>Diego Fernandes</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>CTO na @Rocketseat. Apaixonado pelas melhores tecnologias de desenvolvimento web e mobile.</p>
-            <a href="https://github.com/diego3g">Acessar perfil no Gihub</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars0.githubusercontent.com/u/2254731?s=460&v=4" alt="Diego Fernandes"/>
-              <div className="user-info"></div>
-              <div className="user-info">
-                <strong>Diego Fernandes</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>CTO na @Rocketseat. Apaixonado pelas melhores tecnologias de desenvolvimento web e mobile.</p>
-            <a href="https://github.com/diego3g">Acessar perfil no Gihub</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars0.githubusercontent.com/u/2254731?s=460&v=4" alt="Diego Fernandes"/>
-              <div className="user-info"></div>
-              <div className="user-info">
-                <strong>Diego Fernandes</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>CTO na @Rocketseat. Apaixonado pelas melhores tecnologias de desenvolvimento web e mobile.</p>
-            <a href="https://github.com/diego3g">Acessar perfil no Gihub</a>
-          </li>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars0.githubusercontent.com/u/2254731?s=460&v=4" alt="Diego Fernandes"/>
-              <div className="user-info"></div>
-              <div className="user-info">
-                <strong>Diego Fernandes</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>CTO na @Rocketseat. Apaixonado pelas melhores tecnologias de desenvolvimento web e mobile.</p>
-            <a href="https://github.com/diego3g">Acessar perfil no Gihub</a>
-          </li>
+        {devs.map(dev => (
+          <DevItem key={dev._id} dev={dev}/>
+          ))}
         </ul>
       </main>
     </div>

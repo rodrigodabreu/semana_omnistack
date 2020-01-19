@@ -16,24 +16,14 @@ module.exports = {
     // criando um Dev
     async store(request, response) {
 
-        const {
-            github_username,
-            techs,
-            latitude,
-            longitude
-        } = request.body;
+        const {github_username, techs, latitude, longitude } = request.body;
 
-        let dev = await Dev.findOne({
-            github_username
-        });
+        let dev = await Dev.findOne({ github_username });
 
         if (!dev) {
-
             const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
 
-            const {
-                name = login, avatar_url, bio
-            } = apiResponse.data;
+            const { name = login, avatar_url, bio } = apiResponse.data;
 
             const techsArray = parseStringAsArray(techs); // metodo utilizado para converter as string de tech em um array de techs
 
